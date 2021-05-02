@@ -10,7 +10,16 @@ const Player = () => {
     const [prevTransfers,setTransfers] = useState([])
     const handleTransfer=player=>{
         console.log('Added',player)
-        setTransfers([...prevTransfers,player])
+        const newPlayerList=[...prevTransfers]
+        const playerIndex =newPlayerList.findIndex(playerItem=>playerItem.Player_Name===player.Player_Name)
+        if(playerIndex>-1)
+        {
+            newPlayerList.splice(playerIndex,1)
+        }
+        else{
+            newPlayerList.push(player)
+        }
+       setTransfers(newPlayerList)
     }
     useEffect(() => {
        console.log(playerData)
